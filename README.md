@@ -98,9 +98,6 @@ Implements the hardware interface. ( For this project it was used a VMX-pi )
 
 
 
-
-
-
 ## CONTACT
 If you need support or have any suggestions or proposals please let me know:
 
