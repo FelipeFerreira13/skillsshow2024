@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- The drive_bot node -->
+  <node name="odometry" type="odometry" pkg="odometry" output="screen">
+  </node>
+  
+</launch>

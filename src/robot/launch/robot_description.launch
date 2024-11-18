@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- send urdf to param server -->
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find robot)/description/robot.xacro'" />
+
+  <!-- Send fake joint values -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="false"/>
+    <param name="publish_default_velocities" value="True"/>
+  </node>
+
+  <!-- Send robot states to tf -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
+
+  <!-- Transformation Configuration -->
+  <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser4" args="0.125 -0.09 0.17 0.0 0.0 0.0 /base_footprint /laser_frame 40" />
+
+</launch>

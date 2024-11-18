@@ -1,0 +1,4 @@
+<launch>
+	<node pkg="vmxpi_ros_bringup" name="robot_interface" type="robot_interface" output="screen"/>
+	<node pkg="oms" name="oms_node" type="oms_node" output="screen"/>
+</launch>

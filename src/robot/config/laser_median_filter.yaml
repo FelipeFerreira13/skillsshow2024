@@ -1,0 +1,24 @@
+scan_filter_chain:
+- name: intensity
+  type: laser_filters/LaserScanIntensityFilter
+  params:
+    invert: True
+    filter_override_range: True
+    lower_threshold: 1010
+    upper_threshold: 100000
+    disp_histogram: 0
+- type: laser_filters/LaserArrayFilter
+  name: laser_median_filter
+  params:
+    range_filter_chain:
+      - name: median_5
+        type: filters/MultiChannelMedianFilterFloat
+        params:
+          number_of_observations: 5
+          unused: 10
+    intensity_filter_chain:
+      - name: median_5
+        type: filters/MultiChannelMedianFilterFloat
+        params:
+          number_of_observations: 5
+          unused: 10

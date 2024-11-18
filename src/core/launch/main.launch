@@ -1,0 +1,27 @@
+<launch>
+
+    <!-- Run Lidar -->
+    <include file="$(find ydlidar_ros_driver)/launch/X2.launch"/>
+
+    <!-- Run move_base -->
+    <include file="$(find base_controller)/launch/base_controller.launch"/>
+
+    <!-- Launch Robot Description-->
+    <include file="$(find robot)/launch/robot_description.launch"/>
+
+	<node pkg="vmxpi_ros_bringup" name="robot_interface" type="robot_interface" output="screen"/>
+	<node pkg="oms"               name="oms_node"        type="oms_node"        output="screen"/>
+    <node pkg="odometry"          name="odometry"        type="odometry"        output="screen"/>
+    <node pkg="base_controller"   name="base_controller" type="base_controller" output="screen"/>
+
+    <node pkg="core"              name="main"            type="main"            output="screen"/>
+
+
+    <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="scan_to_scan_filter_chain">
+        <rosparam command="load" file="$(find robot)/config/laser_median_filter.yaml" />
+    </node>
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot)/rviz/rviz_viewer.rviz" />
+
+
+</launch>

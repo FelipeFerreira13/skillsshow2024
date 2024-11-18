@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <link name="base_footprint"></link>
+
+    <joint name="robot_footprint_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="base_footprint"/>
+        <child link="base_link" />
+    </joint>
+
+    <link name="base_link"></link>
+
+    <joint name="chassis_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis"/>
+        <origin xyz="0 0 0"/>
+    </joint>
+
+    <link name="chassis">
+        <visual>
+            <origin xyz="0 0 0.075" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.25 0.25 0.15"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0.2 0.2 1 1"/>
+            </material>
+        </visual>
+    </link>
+
+</robot>

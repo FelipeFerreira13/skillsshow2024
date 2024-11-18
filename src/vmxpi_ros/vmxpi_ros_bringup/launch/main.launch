@@ -1,0 +1,3 @@
+<launch>
+	<node pkg="vmxpi_ros_bringup" name="main_node" type="main_node" output="screen"/>
+</launch>
