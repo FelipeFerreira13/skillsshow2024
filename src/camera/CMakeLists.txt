@@ -59,6 +59,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_service_files(
   FILES
   Status.srv
+  detect_fruit.srv
 )
 
 ## Generate actions in the 'action' folder
@@ -207,5 +208,9 @@ include_directories(
 # catkin_add_nosetests(test)
 
 catkin_install_python(PROGRAMS src/simple_cam.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+catkin_install_python(PROGRAMS src/detect_fruit.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
