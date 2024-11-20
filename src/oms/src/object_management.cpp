@@ -114,10 +114,22 @@ void elevatorMotor( double pwm ){
 void cmd_vel_callback(const geometry_msgs::Twist::ConstPtr& cmd_vel){
     float cmd_vel_z = cmd_vel->linear.z;
 
+    vmxpi_ros::Float msg;
+
     if ( cmd_vel_z != prev_cmd_z ){
         float pwm = (cmd_vel_z * 100) / 15;
-        elevatorMotor( pwm );
+
+        if( cmd_vel_z > 0 && limit_high_state ){
+            msg.request.data = cmd_vel_z;
+        }else if( cmd_vel_z < 0 && limit_low_state ){
+            msg.request.data = cmd_vel_z;
+        }else{
+            msg.request.data = 0;
+        }
+
+        setAngleElev.call(msg);
 
         prev_cmd_z = cmd_vel_z;
     }
+
 }
