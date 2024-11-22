@@ -41,13 +41,13 @@ bool simple_move( base_controller::move_goal::Request &req, base_controller::mov
     double desired_vy;
     double desired_vth;
 
-    ROS_INFO("vx: %f", req.x);
-    ROS_INFO("vy: %f", req.y);
-    ROS_INFO("vth: %f", req.th);
+    ROS_INFO("d_x: %f", req.x);
+    ROS_INFO("d_y: %f", req.y);
+    ROS_INFO("d_th: %f", req.th);
 
-    ROS_INFO("vx: %f", x_global);
-    ROS_INFO("vy: %f", y_global);
-    ROS_INFO("vth: %f", th_global);
+    ROS_INFO("x: %f", x_global);
+    ROS_INFO("y: %f", y_global);
+    ROS_INFO("th: %f", th_global);
 
     ros::Rate loop_rate(5);
 
@@ -85,9 +85,7 @@ bool simple_move( base_controller::move_goal::Request &req, base_controller::mov
 
         rotate( desired_vx, desired_vy, -(th_global/180) * PI ); // Rotate from Global Frame to Local Frame
 
-        ROS_INFO("vx: %f", desired_vx);
-        ROS_INFO("vy: %f", desired_vy);
-        ROS_INFO("vth: %f", desired_vth);
+        ROS_INFO("x: %f, y: %f, th: %f", x_global, y_global, th_global);
 
         geometry_msgs::Twist cmd;
         cmd.linear.x  = desired_vx;
